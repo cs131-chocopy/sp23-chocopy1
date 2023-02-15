@@ -349,8 +349,7 @@ class CallExpr : public Expr {
     unique_ptr<Ident> function;
     vector<unique_ptr<Expr>> args;
 
-    CallExpr(Location location, Ident *function,
-             vector<unique_ptr<Expr>> *args)
+    CallExpr(Location location, Ident *function, vector<unique_ptr<Expr>> *args)
         : Expr(location, "CallExpr"), function(function) {
         this->args = std::move(*args);
         delete args;
@@ -450,8 +449,7 @@ class FuncDef : public Decl {
      *  spanning source locations [LEFT..RIGHT].
      */
     FuncDef(Location location, Ident *name,
-            vector<unique_ptr<TypedVar>> *params,
-            TypeAnnotation *returnType,
+            vector<unique_ptr<TypedVar>> *params, TypeAnnotation *returnType,
             vector<unique_ptr<Decl>> *declarations,
             vector<unique_ptr<parser::Stmt>> *statements)
         : Decl(location, "FuncDef"), name(name), returnType(returnType) {

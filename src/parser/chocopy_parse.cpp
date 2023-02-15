@@ -28,10 +28,8 @@ json Node::toJSON() const {
 
     d["kind"] = kind;
 #ifdef __PARSER_PRINT_LOCATION
-    d["location"] = {
-        location.first.line, location.first.column, 
-        location.last.line, location.last.column
-        };
+    d["location"] = {location.first.line, location.first.column,
+                     location.last.line, location.last.column};
 #endif
 
     if (this->has_type_err()) d["errorMsg"] = typeError;
