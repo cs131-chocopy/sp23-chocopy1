@@ -88,10 +88,10 @@ struct Location {
  */
 class Node {
    public:
+    Location location;
+
     string kind;
     string typeError;
-
-    Location location;
 
     explicit Node(Location location) : location(location) {}
     Node(Location location, string kind)
@@ -480,6 +480,8 @@ class GlobalDecl : public Decl {
 class IfStmt : public Stmt {
    public:
     enum cond { THEN_ELSE = 0, THEN_ELIF, THEN };
+    /** Bool manifest else or elif or int */
+    char el = cond::THEN;
     /** Test condition. */
     unique_ptr<Expr> condition;
     /** "True" branch. */
@@ -487,8 +489,6 @@ class IfStmt : public Stmt {
     /** "False" branch. */
     vector<unique_ptr<parser::Stmt>> elseBody;
     unique_ptr<IfStmt> elifBody;
-    /** Bool manifest else or elif or int */
-    char el = cond::THEN;
     /** The AST for
      *      if CONDITION:
      *          THENBODY
@@ -786,8 +786,8 @@ class UnaryExpr : public Expr {
      */
     UnaryExpr(Location location, string operator_, Expr *operand)
         : Expr(location, "UnaryExpr"),
-          operand(operand),
-          operator_(std::move(operator_)) {}
+          operator_(std::move(operator_)),
+          operand(operand) {}
 
     static operator_code hashcode(std::string const &str) {
         if (str == "-" || str == "MINUS:-") return operator_code::Minus;
