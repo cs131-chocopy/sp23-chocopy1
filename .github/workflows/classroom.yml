@@ -32,4 +32,4 @@ jobs:
           repository: cs131-chocopy/sp23-testcases
           path: tests
           fetch-depth: 0
-      - uses: cs131-chocopy/autograding@30d2fde2483fb31d2d764955fc7e054f90754a1d
+      - uses: cs131-chocopy/autograding@ab613e677ae56ee692336bfe9a5209312d875510
