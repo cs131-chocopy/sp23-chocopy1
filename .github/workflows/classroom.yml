@@ -23,7 +23,7 @@ jobs:
           echo "::stop-commands::$stopMarker"
       - name: Build
         run: |
-          cmake -S . -B build -G Ninja && cmake --build build
+          cmake -DCMAKE_BUILD_TYPE=Release -S . -B build -G Ninja && cmake --build build
       - name: Cleanup
         run: |
           rm -rf tests
